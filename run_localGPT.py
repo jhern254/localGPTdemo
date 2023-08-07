@@ -229,7 +229,7 @@ def main(device_type, show_sources):
 
     # insert new model here
     model_id = "TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GPTQ"
-    model_basename = "gptq_model-4bit-32g.safetensors"
+    model_basename = "gptq_model-4bit-128g.safetensors"
 
     template = """Use the following pieces of context to answer the question at the end. If you don't know the answer,\
 just say that you don't know, don't try to make up an answer.
