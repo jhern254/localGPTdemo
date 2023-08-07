@@ -5,7 +5,7 @@ import torch
 from auto_gptq import AutoGPTQForCausalLM
 from huggingface_hub import hf_hub_download
 from langchain.chains import RetrievalQA
-from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.llms import HuggingFacePipeline, LlamaCpp
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
@@ -116,7 +116,7 @@ def load_model(device_type, model_id, model_basename=None):
         "text-generation",
         model=model,
         tokenizer=tokenizer,
-        max_length=2048,
+        max_length=3072,    # default: 2048 - Llama 1
         temperature=0,
         top_p=0.95,
         repetition_penalty=1.15,
@@ -170,7 +170,7 @@ def main(device_type, show_sources):
     This function implements the information retrieval task.
 
 
-    1. Loads an embedding model, can be HuggingFaceInstructEmbeddings or HuggingFaceEmbeddings
+    1. Loads an embedding model, can be HuggingFaceEmbeddings or HuggingFaceEmbeddings
     2. Loads the existing vectorestore that was created by inget.py
     3. Loads the local LLM using load_model function - You can now set different LLMs.
     4. Setup the Question Answer retreival chain.
@@ -180,7 +180,7 @@ def main(device_type, show_sources):
     logging.info(f"Running on: {device_type}")
     logging.info(f"Display Source Documents set to: {show_sources}")
 
-    embeddings = HuggingFaceInstructEmbeddings(model_name=EMBEDDING_MODEL_NAME, model_kwargs={"device": device_type})
+    embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL_NAME, model_kwargs={"device": device_type})
 
     # uncomment the following line if you used HuggingFaceEmbeddings in the ingest.py
     # embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL_NAME)
@@ -223,8 +223,13 @@ def main(device_type, show_sources):
     # model_id = "TheBloke/orca_mini_3B-GGML"
     # model_basename = "orca-mini-3b.ggmlv3.q4_0.bin"
 
-    model_id = "TheBloke/Llama-2-7B-Chat-GGML"
-    model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin"
+    # original model
+#    model_id = "TheBloke/Llama-2-7B-Chat-GGML"
+#    model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin"
+
+    # insert new model here
+    model_id = "TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GPTQ"
+    model_basename = "gptq_model-4bit-32g.safetensors"
 
     template = """Use the following pieces of context to answer the question at the end. If you don't know the answer,\
 just say that you don't know, don't try to make up an answer.
