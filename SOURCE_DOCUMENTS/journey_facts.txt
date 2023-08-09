@@ -1,0 +1,17 @@
+Patient class can be changed to Observation in Epic while a patient is waiting in ED for a bed. 
+
+Patient class shouldn’t be changed to Inpatient in Epic while a patient is waiting in ED for an inpatient bed. An inpatient admit order from physicians will not always immediately triggers patient class to change to Inpatient in Epic. Even without an inpatient admit order in Epic, patient class can be changed to Inpatient as there are no system hard stops. Patient class is changed to Inpatient in Epic when the patient is receiving inpatient level of care in an inpatient bed.
+
+MDRH patients who have never visited at CSMC do have a CS/Enterprise MRN, since all patients have an enterprise MRN. HH patients who have never visited at CSMC do have a CS/Enterprise MRN. CSMC patients who have never visited at MDRH do not have a MDRH MRN. HH patients who have never visited at MDRH do not have a MDRH MRN. All patients have a CS/Enterprise MRN
+
+The following minor patient classes are part of major patient class of Inpatient, Inpatient, Newborn, and Rehab. Observation and Procedure minor patient classes are not Inpatient major class but are Outpatient major class. 
+
+ICD codes/MS-DRG typically have a major update on October 1st. 
+
+the following scenarios have a billing flag on MS-DRG in Epic, Inpatient visits with coverage of Medicare, Inpatient visits with coverage of commercial payor. The follow scenarios do not have a billing MS-DRG, Outpatient visits with coverage of Medicare, Inpatient visits with coverage of Medi-Cal, Outpatient visits with coverage of Medi-Cal, Outpatient visits with coverage of commercial payor. 
+
+HID does not code for Consulting Provider or Resident and Fellow. HID codes ICD on Inpatient visits. HID codes CPT on Outpatient visits. HID does not code ICD on Outpatient visits or CPT on Inpatient visits.
+
+ICD-10-CM is why the provider 'did' and 'used'. HCPCS Level 2 codes is what the provider used. CPT codes is what the provider did. 
+
+Charges can be reversed, Charges can be transferred from one account to another. Contractual Adjustment is a common adjustment to the charges/claim/bill. Charges are not always posted on the same day as the service date.
