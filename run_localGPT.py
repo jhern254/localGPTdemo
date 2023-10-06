@@ -229,7 +229,8 @@ def main(device_type, show_sources):
 
     # insert new model here
     model_id = "TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GPTQ"
-    model_basename = "gptq_model-4bit-128g.safetensors"
+#    model_basename = "gptq_model-4bit-128g.safetensors"
+    model_basename = "model.safetensors"
 #    model_id = "TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ/gptq-4bit-32g-actorder_True"
 #    model_basename = "gptq_model-4bit-32g.safetensors"
 
